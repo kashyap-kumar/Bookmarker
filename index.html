@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Welcome to HTML city, Source Code -->
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bookmark App</title>
+
+    <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        /* ##### Loader Start ##### */
+        .loader {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: #d0d0d0;
+            display: grid;
+            place-items: center;
+        }
+
+        #loader {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border-top: 5px solid dodgerblue;
+            border-bottom: 5px solid dodgerblue;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            animation: anim 2s infinite;
+        }
+
+        @keyframes anim {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* ##### Loader End ##### */
+    </style>
+</head>
+
+<body onload="loadItems()">
+    <div class="loader">
+        <span id="loader"></span>
+    </div>
+    <div class="container">
+        <form id="form">
+            <h3>पृष्ठ स्मृति / BOOKMARK</h3>
+            <input type="text" placeholder="Enter Site Name" value="" id="siteName" />
+            <input type="text" placeholder="Enter Site URL" value="" id="siteUrl" />
+            <input type="submit" value="Add" />
+        </form>
+        <div id="bookmarks"></div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+/* Welcome to CSS city, Source Code ;) */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    min-height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    font-family: sans-serif;
+    background-color: #14213d;
+    color: #afafaf;
+    font-size: 16px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: center;
+}
+
+/* ##### form Start ##### */
+form{
+    min-width: 300px;
+    background-color: #fca311;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-radius: 7px;
+}
+form > *{
+    margin: 10px 0;
+}
+form h3{
+    color: #141415;
+}
+form input{
+    background-color: #e5e5e5;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    font-weight: 700;
+    color: #141415;
+    border-radius: 5px;
+}
+::placeholder{
+    color: #3c4659;
+    opacity: 1; /* for firefox */
+}
+::-ms-input-placeholder{ /* for MS EDGE */
+    color: #3c4659;
+}
+input[type=submit]{
+    background-color: hsl(240, 2%, 12%);
+    color: #fca311;
+    cursor: pointer;
+}
+input[type=text]:focus{
+    box-shadow: 0 0 0 2px #141415;
+}
+/* ##### form End ##### */
+
+
+/* ##### Bookmark Start ##### */
+#bookmarks{
+    background-color: hsl(240, 2%, 12%);
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 7px;
+}
+.bookmark{
+    background-color: hsl(240, 2%, 15%);
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px 0;
+    border-radius: 6px;
+}
+.bookmark h4{
+    flex-basis: 70%;
+}
+.bookmark a{
+    text-decoration: none;
+    padding: 5px 10px;
+    background-color: #fca311;
+    color: #141415;
+    font-weight: bold;
+    font-size: 14px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+.bookmark span{
+    padding: 5px 10px;
+    background-color: #ff002f;
+    color: wheat;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+/* ##### Bookmark End ##### */
+
+
+@media screen and (min-width: 1000px) {
+    body{
+        font-size: 20px;
+    }
+    form{
+        min-width: 400px;
+    }
+}
