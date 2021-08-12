@@ -71,10 +71,13 @@ function isUrlValid(userInput) {
 function delFunc(){
   // getting the bookmarks from local storage and deleting the bookmark from local storage
   let bookmarks = JSON.parse(localStorage.getItem("bookmark"));
-  console.log(Array.from(del).indexOf(this));
-  bookmarks = bookmarks.filter(bookmark => bookmark !== bookmarks[Array.from(del).indexOf(this)]);
-  localStorage.setItem("bookmark", JSON.stringify(bookmarks));
-
-  // deleting the bookmark from the UI
-  this.parentNode.parentNode.removeChild(this.parentNode);  
+  // console.log(Array.from(del).indexOf(this));
+  
+  if(confirm("Are you sure, you want to delete this item?")){
+    bookmarks = bookmarks.filter(bookmark => bookmark !== bookmarks[Array.from(del).indexOf(this)]);
+    localStorage.setItem("bookmark", JSON.stringify(bookmarks));
+  
+    // deleting the bookmark from the UI
+    this.parentNode.parentNode.removeChild(this.parentNode);  
+  }
 }
