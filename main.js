@@ -31,6 +31,10 @@ function addItem(e) {
   localStorage.setItem("bookmark", JSON.stringify(bookmarks));
 
   loadItems();
+
+  // clear the input fields
+  document.getElementById("siteName").value = "";
+  document.getElementById("siteUrl").value = "";
 }
 
 // load the bookmarks
