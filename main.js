@@ -46,7 +46,7 @@ function loadItems() {
     bookmarks.forEach((e) => {
       document.getElementById("bookmarks").innerHTML += `
                 <div class="bookmark">
-                    <h4>${e.siteName}</h4>
+                    <p>${e.siteName}</p>
                     <a href="${e.siteUrl}" target="blank">Visit</a>
                     <span class="delete fa fa-trash-alt"></span>
                 </div>
