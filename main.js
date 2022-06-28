@@ -1,43 +1,111 @@
-// Welcome to JavaScript city, Source Code
-
 document.getElementsByClassName("loader")[0].style.display = "none";
 
-const form = document.getElementById("form");
-form.addEventListener("submit", addItem);
+let del;              // for getting the classes with the name delete, can't initialised here because the elements with the class name delete are created in local scope(function)
+let isUpdate = false; // for checking whether the values in the form should be updated or added in the bookmarks
+let editItemIndex;    // index of the item to be edited when clicked on edit button of a bookmark
 
-let del; // for getting the classes with the name delete, can't initialised here because the elements with the class name delete are created in local scope(function)
+const siteName_elm  = document.getElementById("siteName");
+const siteUrl_elm   = document.getElementById("siteUrl");
 
-// add new bookmark
-function addItem(e) {
-  e.preventDefault();
+/**
+ * ************* ADD NEW BOOKMARK ************* 
+ */
+function addItem() {
+  // get the values of form inputs
+  let siteName  = siteName_elm.value;
+  let siteUrl   = siteUrl_elm.value;
 
-  let siteName = document.getElementById("siteName").value;
-  let siteUrl = document.getElementById("siteUrl").value;
+  // create an item object
   const bookmark = {
     siteName: siteName,
     siteUrl: siteUrl
   };
 
+  // check for url whether it is valid or not
   if(!isUrlValid(siteUrl)){
     alert("Enter a valid url");
     return;
   }
 
-  if(localStorage.getItem("bookmark") == null){
+  // if localstorage key doesn't exists create one
+  if(localStorage.getItem("bookmark") == null)
     localStorage.setItem("bookmark", "[]");
-  }
+
+  // get the localstorage data as an array of objects, add new item and then update localstorage
   const bookmarks = JSON.parse(localStorage.getItem("bookmark"));
   bookmarks.push(bookmark);
   localStorage.setItem("bookmark", JSON.stringify(bookmarks));
 
+  // after adding a new item we need to load them in the UI
   loadItems();
 
   // clear the input fields
-  document.getElementById("siteName").value = "";
-  document.getElementById("siteUrl").value = "";
+  siteName_elm.value  = "";
+  siteUrl_elm.value   = "";
 }
 
-// load the bookmarks
+/**
+ * ************* EDIT/UPDATE BOOKMARK ************* 
+ */
+function editItem(e){
+  // for indicating that we are updating an existing item
+  isUpdate = true;
+  document.getElementById("submitBtn").value = "UPDATE";
+
+  // get the index of clicked item
+  editItemIndex = nodeIndex(e);
+
+  // get the bookmarks from localstorage
+  const bookmarks = JSON.parse(localStorage.getItem("bookmark"));
+
+  // get the values of the item in the form inputs
+  siteName_elm.value  = bookmarks[editItemIndex].siteName;
+  siteUrl_elm.value   = bookmarks[editItemIndex].siteUrl;
+
+  // returns the index of the element relative to its siblings
+  function nodeIndex(el) {
+    let i = 0;
+    while (el.previousElementSibling) {
+      el = el.previousElementSibling;
+      i++;
+    }
+    return i;
+  }
+}
+
+// update button is clicked to update an existing item after editing
+function updateItem(){  
+  // get the values of form in a new item object
+  let siteName  = siteName_elm.value;
+  let siteUrl   = siteUrl_elm.value;
+  const bookmark = {
+    siteName: siteName,
+    siteUrl: siteUrl
+  };
+
+  // check for url whether it is valid or not
+  if(!isUrlValid(siteUrl)){
+    alert("Enter a valid url");
+    return;
+  }
+  
+  // get the bookmarks from localstorage as an array
+  const bookmarks = JSON.parse(localStorage.getItem("bookmark"));
+
+  // replace the new object with its respective object in bookmarks array
+  bookmarks[editItemIndex] = bookmark;
+
+  // update in localstorage
+  localStorage.setItem("bookmark", JSON.stringify(bookmarks));
+
+  // updating finished
+  isUpdate = false;
+  document.getElementById("submitBtn").value = "ADD";
+}
+
+/**
+ * ************* LOAD BOOKMARKS ************* 
+ */
 function loadItems() {
   document.getElementById("bookmarks").innerHTML = "";
 
@@ -46,13 +114,14 @@ function loadItems() {
     bookmarks.forEach((e) => {
       document.getElementById("bookmarks").innerHTML += `
                 <div class="bookmark">
-                    <p>${e.siteName}</p>
-                    <a href="${e.siteUrl}" target="blank">Visit</a>
+                    <p><a href="${e.siteUrl}" target="blank">${e.siteName}</a></p>
+                    <span class="edit fa fa-pen" onclick="editItem(this.parentElement)"></span>
                     <span class="delete fa fa-trash-alt"></span>
                 </div>
             `;
     });
   }
+
   // for deleting bookmarks
   del = document.getElementsByClassName("delete");
   for(let i=0; i<del.length; i++){
@@ -60,7 +129,9 @@ function loadItems() {
   }
 }
 
-// url  validation
+/**
+ * ************* URL VALIDATION ************* 
+ */
 function isUrlValid(userInput) {
     var res = userInput.match(
       /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi
@@ -71,7 +142,9 @@ function isUrlValid(userInput) {
         return true;
 }
 
-// function for deleting bookmark  
+/**
+ * ************* DELETE BOOKMARK ************* 
+ */  
 function delFunc(){
   // getting the bookmarks from local storage and deleting the bookmark from local storage
   let bookmarks = JSON.parse(localStorage.getItem("bookmark"));

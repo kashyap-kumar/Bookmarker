@@ -8,13 +8,11 @@ body{
     width: 100%;
     display: grid;
     place-items: center;
-    font-family: sans-serif;
-    background-color: #14213d;
-    color: #afafaf;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #42F488;
     font-size: 16px;
 }
 .container{
-    max-width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -24,96 +22,102 @@ body{
 
 /* ##### form Start ##### */
 form{
-    min-width: 300px;
-    background-color: #fca311;
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    border-radius: 7px;
-}
-form > *{
-    margin: 10px 0;
+    border-radius: 3px;
+    background-color: #FFFFFF;
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.3);
+    padding: 30px 40px 20px;
+    max-width: 450px;
+    margin: 0 auto;
 }
 form h3{
-    color: #141415;
+    color: #0f9d58;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: Arial;
+    font-size: 24px;
+    letter-spacing: 3PX;
 }
 form input{
-    background-color: #ffbd52;
-    padding: 5px 10px;
+    margin-bottom: 18px;
+    padding: 18px 16px;
+    background-color: #edf1f5;
+    color: #293845;
+    font-size: 20px;
     border: none;
     outline: none;
-    font-weight: 700;
-    color: #20180d;
-    border-radius: 5px;
+    border-radius: 3px;
     font-family: Arial, Helvetica, sans-serif;
 }
 ::placeholder{
-    color: #69502d;
+    color: #818b86;
     opacity: 1; /* for firefox */
 }
 ::-ms-input-placeholder{ /* for MS EDGE */
-    color: #3c4659;
+    color: #818b86; 
 }
 input[type=submit]{
-    background-color: hsl(240, 2%, 12%);
-    color: #fca311;
+    margin-bottom: 0;
+    background-color: #0f9d58;
+    color: #FFFFFF;
+    box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.12);
+    font-weight: 500;
     cursor: pointer;
 }
 input[type=text]:focus{
-    box-shadow: 0 0 0 2px #141415;
+    box-shadow: 0 0 0 2px #0f9d58;
 }
 /* ##### form End ##### */
 
 
 /* ##### Bookmark Start ##### */
 #bookmarks{
-    background-color: hsl(240, 2%, 12%);
+    background-color: #224254;
     margin-top: 20px;
     padding: 10px 20px;
-    border-radius: 7px;
+    border-radius: 3px;
 }
 .bookmark{
-    background-color: hsl(240, 2%, 15%);
+    background-color: #182E3A;
     padding: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     margin: 10px 0;
-    border-radius: 6px;
+    border-radius: 3px;
 }
 .bookmark p{
-    flex-basis: 70%;
+    flex: 4;
     line-height: 1.5;
 }
 .bookmark a{
     text-decoration: none;
-    padding: 5px 10px;
-    background-color: #fca311;
-    color: #141415;
-    font-weight: bold;
-    font-size: 14px;
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
+    display: inline-block;
+    width: 100%;
+    color: #9CC1D6;
 }
 .bookmark span{
     padding: 5px 10px;
-    background-color: #ff002f;
+    background-color: #0F9D58;
     color: wheat;
-    font-weight: bold;
     font-size: 17px;
     cursor: pointer;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 3px;
+    margin-left: 1px;
 }
 /* ##### Bookmark End ##### */
 
 
-@media screen and (min-width: 1000px) {
+@media screen and (max-width: 700px) {
     body{
         font-size: 20px;
     }
     form{
-        min-width: 400px;
+        max-width: 300px;
+        padding: 25px 25px;
+    }
+    form input{
+        font-size: 18px;
     }
 }
